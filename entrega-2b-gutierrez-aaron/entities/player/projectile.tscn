@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://fakmpl8rksjp"]
+
+[ext_resource type="PackedScene" uid="uid://blkoswjxkm5xb" path="res://AbstractProjectile.tscn" id="1_txje5"]
+
+[node name="Projectile" instance=ExtResource("1_txje5")]
+
+[node name="Timer" parent="." index="0"]
+wait_time = 3.0

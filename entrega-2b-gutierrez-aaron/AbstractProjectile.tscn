@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://blkoswjxkm5xb"]
+
+[ext_resource type="Texture2D" uid="uid://bjcbx5lpijcst" path="res://assets/textures/proyectile_player.png" id="1_6d5do"]
+[ext_resource type="Script" uid="uid://b3iarsx5pxm5g" path="res://entities/player/abstract_projectile.gd" id="1_a2whm"]
+
+[node name="Projectile" type="Sprite2D"]
+texture = ExtResource("1_6d5do")
+script = ExtResource("1_a2whm")
+speed = 50.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
