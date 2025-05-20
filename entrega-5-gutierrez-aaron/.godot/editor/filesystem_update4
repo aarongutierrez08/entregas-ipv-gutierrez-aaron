@@ -1,0 +1,5 @@
+res://default_env.tres
+res://src/Main.tscn
+res://src/entities/enemies/Turret.gd
+res://src/entities/enemies/Turret.tscn
+res://src/entities/AstarTilemap.tscn
