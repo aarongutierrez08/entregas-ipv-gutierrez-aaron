@@ -1,0 +1,207 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://src/game/ui/tutorials/WeaponTutorial.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/DungeonFont.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/textures/ui/Controller&KeyPrompts/Keyboard & Mouse/Blanks/Blank_Black_Normal.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/ui/Controller&KeyPrompts/Keyboard & Mouse/Dark/Mouse_Left_Key_Dark.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/ui/Controller&KeyPrompts/Keyboard & Mouse/Dark/Mouse_Right_Key_Dark.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/ui/Controller&KeyPrompts/Keyboard & Mouse/Dark/Mouse_Middle_Key_Dark.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("TutorialElements:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0.14902 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "enabled"
+tracks/0/type = "value"
+tracks/0/path = NodePath("TutorialElements:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0.14902 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 26, 12 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 12
+outline_size = 1
+font_data = ExtResource( 2 )
+
+[node name="SwordTutorial" type="Node2D"]
+script = ExtResource( 1 )
+actions = PoolStringArray( "attack_weapon1", "attack_weapon2", "attack_weapon3" )
+actions_textures_paths = [ NodePath("TutorialElements/AttackAction1/ActionLabel/ActionTexture"), NodePath("TutorialElements/AttackAction2/ActionLabel/ActionTexture"), NodePath("TutorialElements/AttackAction3/ActionLabel/ActionTexture") ]
+actions_labels_paths = [ NodePath("TutorialElements/AttackAction1/ActionLabel"), NodePath("TutorialElements/AttackAction2/ActionLabel"), NodePath("TutorialElements/AttackAction3/ActionLabel") ]
+mouse_buttons_events = [ 1, 2, 3, 4, 5 ]
+mouse_buttons_textures = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ) ]
+empty_key_texture = ExtResource( 3 )
+
+[node name="EnablingAnimation" type="AnimationPlayer" parent="."]
+autoplay = "RESET"
+anims/RESET = SubResource( 3 )
+anims/enabled = SubResource( 4 )
+
+[node name="PlayerCloseArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCloseArea"]
+position = Vector2( 0, -12 )
+shape = SubResource( 1 )
+
+[node name="TutorialElements" type="Node2D" parent="."]
+modulate = Color( 0, 0, 0, 0.14902 )
+
+[node name="AttackAction1" type="VBoxContainer" parent="TutorialElements"]
+margin_left = -92.0
+margin_top = -26.0
+margin_right = -17.0
+grow_vertical = 0
+custom_constants/separation = 3
+
+[node name="ActionName" type="Label" parent="TutorialElements/AttackAction1"]
+margin_right = 75.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 1, 0.607843, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.415686, 0.270588, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Cut"
+align = 1
+
+[node name="ActionLabel" type="Label" parent="TutorialElements/AttackAction1"]
+margin_left = 33.0
+margin_top = 16.0
+margin_right = 42.0
+margin_bottom = 29.0
+size_flags_horizontal = 6
+custom_colors/font_color = Color( 1, 0.607843, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.415686, 0.270588, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "A"
+align = 1
+valign = 1
+
+[node name="ActionTexture" type="TextureRect" parent="TutorialElements/AttackAction1/ActionLabel"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -5.0
+margin_top = -6.0
+margin_right = 5.0
+margin_bottom = 4.0
+grow_horizontal = 2
+rect_min_size = Vector2( 19, 23 )
+size_flags_horizontal = 6
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="AttackAction2" type="VBoxContainer" parent="TutorialElements"]
+margin_left = 18.0
+margin_top = -26.0
+margin_right = 93.0
+grow_vertical = 0
+custom_constants/separation = 3
+
+[node name="ActionName" type="Label" parent="TutorialElements/AttackAction2"]
+margin_right = 75.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 1, 0.607843, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.415686, 0.270588, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Distant Blade"
+align = 1
+
+[node name="ActionLabel" type="Label" parent="TutorialElements/AttackAction2"]
+margin_left = 33.0
+margin_top = 16.0
+margin_right = 42.0
+margin_bottom = 29.0
+size_flags_horizontal = 6
+custom_colors/font_color = Color( 1, 0.607843, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.415686, 0.270588, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "A"
+align = 1
+valign = 1
+
+[node name="ActionTexture" type="TextureRect" parent="TutorialElements/AttackAction2/ActionLabel"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -5.0
+margin_top = -6.0
+margin_right = 5.0
+margin_bottom = 4.0
+grow_horizontal = 2
+rect_min_size = Vector2( 19, 23 )
+size_flags_horizontal = 6
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="AttackAction3" type="VBoxContainer" parent="TutorialElements"]
+margin_left = -38.0
+margin_top = -70.0
+margin_right = 37.0
+margin_bottom = -41.0
+grow_vertical = 0
+custom_constants/separation = 3
+
+[node name="ActionName" type="Label" parent="TutorialElements/AttackAction3"]
+margin_right = 75.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 1, 0.607843, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.415686, 0.270588, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Dash Cut"
+align = 1
+
+[node name="ActionLabel" type="Label" parent="TutorialElements/AttackAction3"]
+margin_left = 33.0
+margin_top = 16.0
+margin_right = 42.0
+margin_bottom = 29.0
+size_flags_horizontal = 6
+custom_colors/font_color = Color( 1, 0.607843, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.415686, 0.270588, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "A"
+align = 1
+valign = 1
+
+[node name="ActionTexture" type="TextureRect" parent="TutorialElements/AttackAction3/ActionLabel"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -5.0
+margin_top = -6.0
+margin_right = 5.0
+margin_bottom = 4.0
+grow_horizontal = 2
+rect_min_size = Vector2( 19, 23 )
+size_flags_horizontal = 6
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[connection signal="body_entered" from="PlayerCloseArea" to="." method="_on_PlayerCloseArea_body_entered"]
